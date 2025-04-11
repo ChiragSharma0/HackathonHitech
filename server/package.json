@@ -11,10 +11,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-<<<<<<< HEAD
-=======
     "@google/generative-ai": "^0.24.0",
->>>>>>> 18032e76acf6599d6261d9a67686a697659a4892
     "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
@@ -23,12 +20,9 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.13.2",
     "passport": "^0.7.0",
-<<<<<<< HEAD
-=======
     "passport-facebook": "^3.0.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-linkedin-oauth2": "^2.0.0",
->>>>>>> 18032e76acf6599d6261d9a67686a697659a4892
     "socket.io": "^4.8.1"
   }
 }

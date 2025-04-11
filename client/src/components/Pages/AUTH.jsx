@@ -31,7 +31,7 @@ const AuthForm = ({ isSignup }) => {
   };
 
   const handleSocialLogin = (provider) => {
-    window.open(`${import.meta.env.VITE_API_BASE_URL}/auth/${provider}`, "_self");
+    window.open(`http://localhost:5500/api/auth/${provider}`, "_self");
   };
 
   return (
