@@ -9,14 +9,13 @@ import Signup from "../authpage/Signup";
 
 // Eager-loaded components
 const Home = () => <div className="text-center mt-6 text-2xl">🏠 Home Page</div>;
-const About = () => <div className="text-center mt-6 text-2xl">ℹ️ About Page</div>;
 const HorrorMovies = () => <div className="text-center mt-6 text-2xl">🎥 Horror Movie List</div>;
 const Store = lazy(() => import("./Items"));
 
 // Lazy-loaded components
-const ZombieGuide = lazy(() => import("./Zombie"));
+const Zombiecomp = lazy(() => import("./Zombie"));
 const Chat = lazy(() => import("./Chat"));
-
+const GhostChat = lazy(() => import("./GHOSTchat"));
 function Page() {
   return (
     <div className="Page" style={{ display: "flex", flexDirection: "column", alignItems: "center", zIndex: 100 }}>
@@ -27,8 +26,8 @@ function Page() {
         <Suspense fallback={<div className="text-xl text-center mt-10">Loading...</div>}>
           <Routes>
             <Route path="/home" element={<PageWrapper><Home /></PageWrapper>} />
-            <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
-            <Route path="/zombie" element={<PageWrapper><ZombieGuide /></PageWrapper>} />
+            <Route path="/ghost" element={<PageWrapper><GhostChat /></PageWrapper>} />
+            <Route path="/zombie" element={<PageWrapper><Zombiecomp /></PageWrapper>} />
             <Route path="/chat" element={<PageWrapper><Chat /></PageWrapper>} />
             <Route path="/movies" element={<PageWrapper><HorrorMovies /></PageWrapper>} />
             <Route path="/Store" element={<PageWrapper><Store /></PageWrapper>} />
