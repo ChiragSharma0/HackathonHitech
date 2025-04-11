@@ -8,7 +8,7 @@ import PageWrapper from "../common/PageWrapper";
 const Home = () => <div className="text-center mt-6 text-2xl">🏠 Home Page</div>;
 const About = () => <div className="text-center mt-6 text-2xl">ℹ️ About Page</div>;
 const HorrorMovies = () => <div className="text-center mt-6 text-2xl">🎥 Horror Movie List</div>;
-const GhostStories = () => <div className="text-center mt-6 text-2xl">👻 Ghost Stories Map</div>;
+const Store = lazy(() => import("./Items"));
 
 // Lazy-loaded components
 const ZombieGuide = lazy(() => import("./Zombie"));
@@ -28,7 +28,7 @@ function Page() {
             <Route path="/zombie" element={<PageWrapper><ZombieGuide /></PageWrapper>} />
             <Route path="/chat" element={<PageWrapper><Chat /></PageWrapper>} />
             <Route path="/movies" element={<PageWrapper><HorrorMovies /></PageWrapper>} />
-            <Route path="/ghosts" element={<PageWrapper><GhostStories /></PageWrapper>} />
+            <Route path="/Store" element={<PageWrapper><Store /></PageWrapper>} />
           </Routes>
         </Suspense>
       </div>
