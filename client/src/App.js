@@ -3,7 +3,7 @@ import './App.css';
 import './Style/Spline.css'
 import './Style/common.css'
 import './Style/Page.css'
-
+import './Style/Zombie.css'
 import SplineComp from './components/Spline/Spline'
 import Page from './components/Pages/Page';
 import { JumpscareProvider } from './context/Jumpcontext';

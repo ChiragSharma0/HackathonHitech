@@ -5,7 +5,7 @@ const Zombiecomp = () => {
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/zombie/zombies")
+    fetch("http://localhost:5500/api/zombie/zombies")
       .then((res) => res.json())
       .then((data) => setZombies(data));
   }, []);
