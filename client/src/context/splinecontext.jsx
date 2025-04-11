@@ -102,6 +102,16 @@ export function SplineProvider({ children }) {
               navigate('/zombie');
               return;
             }
+            if (name === "Cathedral") {
+              navigate('/chat');
+              return;
+            }
+            if (name === "ghosthouse") {
+              navigate('/ghost');
+              return;
+            }
+
+            
             modalContentRef.current.innerHTML = `
               <h2>${name}</h2>
               <p>${buildingInfo[name] || 'No description available.'}</p>
