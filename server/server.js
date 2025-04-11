@@ -17,7 +17,7 @@ require("./config/passport"); // All strategies
 
 
 connectDB();
-
+ 
 
 
 app.use(cors());
@@ -33,7 +33,6 @@ app.use(cors(corsOptions));
 app.use(express.json()); 
 
 // Routes
-app.use("/api/auth", authRoutes);
 app.use("/api/chat", chatRoutes);
 
 // Socket.io Setup

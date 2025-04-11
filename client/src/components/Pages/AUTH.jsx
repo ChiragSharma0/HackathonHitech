@@ -1,26 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { FaGoogle,  } from "react-icons/fa";
+import { useNavigate, useLocation } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useAuth } from "../../context/Authcontext"; // adjust path if needed
 
 const AuthForm = ({ isSignup }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+
   const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
+
+  // Handle social login redirect
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    const token = query.get("token");
+    const name = query.get("username");
+    const profilePic = query.get("profilePic");
+
+    if (token) {
+      login(token); // save token via context
+      console.log("✅ Social Login Name:", name);
+      console.log("🖼️ Profile Picture URL:", profilePic);
+      window.history.replaceState({}, document.title, "/dashboard");
+    }
+  }, [location.search, login]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (isSignup) {
-        await axios.post("http://localhost:5500/api/auth/register", { username, email, password });
+        await axios.post("http://localhost:5500/api/auth/register", {
+          username,
+          email,
+          password,
+        });
         alert("Signup Successful!");
         navigate("/login");
       } else {
-        const res = await axios.post("http://localhost:5500/api/auth/login", { email, password });
-        localStorage.setItem("token", res.data.token);
+        const res = await axios.post("http://localhost:5500/api/auth/login", {
+          email,
+          password,
+        });
+        login(res.data.token); // save token via context
         alert("Login Successful!");
         navigate("/dashboard");
       }
@@ -35,22 +61,20 @@ const AuthForm = ({ isSignup }) => {
   };
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
-    >
-      {/* Background with zoom animation */}
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Background */}
       <motion.div
         className="absolute inset-0 bg-cover bg-center scale-110"
-        style={{ backgroundImage: `/image.jpeg` }}
+        style={{ backgroundImage: `url('/image.jpeg')` }}
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}
         transition={{ duration: 20, ease: "easeOut" }}
       />
-      
-      {/* Dark Blur Overlay */}
+
+      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/70 backdrop-blur-md z-0" />
 
-      {/* Glassmorphic Auth Box with animation */}
+      {/* Auth card */}
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
@@ -66,10 +90,8 @@ const AuthForm = ({ isSignup }) => {
             : "Login with your social media or email"}
         </p>
 
-        {/* Social Buttons */}
+        {/* Social Login */}
         <div className="flex gap-2 mb-4">
-          
-          
           <button
             onClick={() => handleSocialLogin("google")}
             className="flex-1 flex items-center justify-center gap-2 bg-red-500 text-white py-2 rounded-full shadow hover:bg-red-600 transition"
@@ -85,6 +107,7 @@ const AuthForm = ({ isSignup }) => {
           <hr className="flex-grow border-white/30" />
         </div>
 
+        {/* Email/Password Form */}
         <form className="space-y-4" onSubmit={handleSubmit}>
           {isSignup && (
             <input
@@ -130,6 +153,7 @@ const AuthForm = ({ isSignup }) => {
           </button>
         </form>
 
+        {/* Toggle login/signup */}
         <div className="text-center mt-4 text-white">
           {isSignup ? (
             <p>

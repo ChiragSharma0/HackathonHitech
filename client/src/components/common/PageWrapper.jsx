@@ -6,7 +6,7 @@ const PageWrapper = ({ children }) => {
 
     const handleLeave = () => {
         // Optional: reset local state/context here
-        navigate("/home"); // or navigate back: navigate(-1);
+        navigate("/"); // or navigate back: navigate(-1);
     };
 
     return (

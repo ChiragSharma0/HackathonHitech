@@ -1,14 +1,15 @@
 import { createContext, useContext, useRef, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Application } from '@splinetool/runtime';
 import { useJumpscare } from './Jumpcontext';
 
 const SplineContext = createContext();
 
 export const useSpline = () => useContext(SplineContext);
-
 export function SplineProvider({ children }) {
+  const navigate = useNavigate();
 
-    const { triggerJumpscare } = useJumpscare();
+  const { triggerJumpscare } = useJumpscare();
 
 
   const canvasRef = useRef(null);
@@ -26,20 +27,20 @@ export function SplineProvider({ children }) {
     Cathedral: 'Survivor’s Cathedral – A safe haven… until it’s not. Knock twice. Stay quiet.',
     ghosthouse: 'Ghost Chat – Talk to spirits... or let them talk through you.',
     selfie: 'Selfie Booth – Snap a pic for your “Missing” poster. Filters included.',
-    TextGlow: 'Better not Disturb me Or Else ... ' 
+    TextGlow: 'Better not Disturb me Or Else ... '
   };
 
   useEffect(() => {
     if (!canvasRef.current || !tooltipContainerRef.current || !modalRef.current || !modalContentRef.current) {
       return; // wait until all refs are attached
     }
-  
+
     const canvas = canvasRef.current;
     const app = new Application(canvas);
     appRef.current = app;
-  
+
     const tooltips = {};
-  
+
 
     app.load('https://prod.spline.design/q1Q5uRKc1mweYEM0/scene.splinecode')
       .then(() => {
@@ -62,9 +63,9 @@ export function SplineProvider({ children }) {
           if (!name || !tooltips[name]) return;
 
           hoveredRef.current = name;
-if(name === "Text Glow"){
-  name = "TextGlow";
-}
+          if (name === "Text Glow") {
+            name = "TextGlow";
+          }
           Object.entries(tooltips).forEach(([tooltipName, { element }]) => {
             if (tooltipName === hoveredRef.current) {
               const { x, y } = mousePosRef.current;
@@ -88,24 +89,32 @@ if(name === "Text Glow"){
         app.addEventListener('mouseDown', (e) => {
           const name = e.target?.name;
           if (name) {
-            
-            if(name === "Text Glow"){
-                triggerJumpscare();
-                return;
+
+            if (name === "Text Glow") {
+              triggerJumpscare();
+              return;
+            }
+            if (name === "Shop") {
+              navigate('/Store');
+              return;
+            }
+            if (name === "Library") {
+              navigate('/zombie');
+              return;
             }
             modalContentRef.current.innerHTML = `
               <h2>${name}</h2>
               <p>${buildingInfo[name] || 'No description available.'}</p>
             `;
             modalRef.current.style.display = 'block';
-            
+
           }
         });
       });
 
 
 
-      
+
     return () => {
       app.dispose();
     };

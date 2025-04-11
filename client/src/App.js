@@ -11,9 +11,12 @@ import { SplineProvider } from './context/splinecontext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Pages/Login';
 import Chat from './components/Pages/Chat';
+import { AuthProvider } from './context/Authcontext';
 
 const App = () => {
   return (
+
+    <AuthProvider>
     <JumpscareProvider>
       <SplineProvider>
         <div className='App'>
@@ -28,7 +31,7 @@ const App = () => {
         </div>
       </SplineProvider>
     </JumpscareProvider>
-
+</AuthProvider>
     
   );
 };
