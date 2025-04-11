@@ -1,6 +1,8 @@
 const express = require('express');
 const Zombie = require('../models/Zombie');
 const ShopItem = require('../models/Items');
+const { getHorrorMovies } = require("../controllers/moviecontrol");
+
 const router = express.Router();
 // GET /api/zombies
 router.get('/zombies', async (req, res) => {
@@ -18,5 +20,7 @@ router.get("/items", async (req, res) => {
   const items = await ShopItem.find();
   res.json(items);
 });
+
+router.post("/movies", getHorrorMovies);
 
 module.exports = router;

@@ -1,4 +1,4 @@
-import { createContext, useContext, useRef, useEffect, useState } from 'react';
+import { createContext, useContext, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Application } from '@splinetool/runtime';
 import { useJumpscare } from './Jumpcontext';
@@ -59,7 +59,7 @@ export function SplineProvider({ children }) {
         });
 
         app.addEventListener('mouseHover', (e) => {
-          const name = e.target?.name;
+          let name = e.target?.name;
           if (!name || !tooltips[name]) return;
 
           hoveredRef.current = name;
@@ -108,6 +108,14 @@ export function SplineProvider({ children }) {
             }
             if (name === "ghosthouse") {
               navigate('/ghost');
+              return;
+            }
+            if (name === "selfie") {
+              navigate('/selfie');
+              return;
+            }
+            if (name === "cinema") {
+              navigate('/movie');
               return;
             }
 
