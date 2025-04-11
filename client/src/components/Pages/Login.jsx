@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route ,useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [name, setName] = useState('');
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // now you can use navigate('/chat')
 
   const handleLogin = () => {
     if (name.trim()) {
@@ -23,7 +23,7 @@ const Login = () => {
           <input
             type="text"
             placeholder="Your name"
-            value={name}
+            value={name} 
             onChange={(e) => setName(e.target.value)}
             className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
           />

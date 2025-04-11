@@ -4,9 +4,13 @@ const { Server } = require('socket.io');
 const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config();
+const connectDB = require('./config/db');
+const app = express();
+const Routes = require('./routes/routes');
 
 connectDB();
-const app = express();
+
+
 app.use(cors());
 
 const server = http.createServer(app);
@@ -34,13 +38,11 @@ io.on('connection', (socket) => {
   });
 });
 
+app.use("/api", Routes);
 
 
 
 
-const authRoutes = require('./routes/authRoutes');
-const connectDB = require('./config/db');
-app.use("/api/auth", authRoutes);
 
 server.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`)});
