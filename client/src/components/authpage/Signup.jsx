@@ -1,5 +1,5 @@
 import React from "react";
-import AuthForm from "../components/AuthForm";
+import AuthForm from "../Pages/AUTH";
 
 const Signup = () => {
   return <AuthForm isSignup={true} />;

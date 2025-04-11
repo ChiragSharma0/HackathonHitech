@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import axios from "../utils/axios";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { FaGoogle, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
-import backgroundImage from "../assets/image.png";
+import { FaGoogle,  } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const AuthForm = ({ isSignup }) => {
@@ -16,11 +15,11 @@ const AuthForm = ({ isSignup }) => {
     e.preventDefault();
     try {
       if (isSignup) {
-        await axios.post("/auth/register", { username, email, password });
+        await axios.post("http://localhost:5500/api/auth/register", { username, email, password });
         alert("Signup Successful!");
         navigate("/login");
       } else {
-        const res = await axios.post("/auth/login", { email, password });
+        const res = await axios.post("http://localhost:5500/api/auth/login", { email, password });
         localStorage.setItem("token", res.data.token);
         alert("Login Successful!");
         navigate("/dashboard");
@@ -42,7 +41,7 @@ const AuthForm = ({ isSignup }) => {
       {/* Background with zoom animation */}
       <motion.div
         className="absolute inset-0 bg-cover bg-center scale-110"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
+        style={{ backgroundImage: `/image.jpeg` }}
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}
         transition={{ duration: 20, ease: "easeOut" }}
@@ -69,20 +68,8 @@ const AuthForm = ({ isSignup }) => {
 
         {/* Social Buttons */}
         <div className="flex gap-2 mb-4">
-          <button
-            onClick={() => handleSocialLogin("facebook")}
-            className="flex-1 flex items-center justify-center gap-2 bg-blue-600 text-white py-2 rounded-full shadow hover:bg-blue-700 transition"
-          >
-            <FaFacebookF />
-            Facebook
-          </button>
-          <button
-            onClick={() => handleSocialLogin("linkedin")}
-            className="flex-1 flex items-center justify-center gap-2 bg-sky-500 text-white py-2 rounded-full shadow hover:bg-sky-600 transition"
-          >
-            <FaLinkedinIn />
-            LinkedIn
-          </button>
+          
+          
           <button
             onClick={() => handleSocialLogin("google")}
             className="flex-1 flex items-center justify-center gap-2 bg-red-500 text-white py-2 rounded-full shadow hover:bg-red-600 transition"

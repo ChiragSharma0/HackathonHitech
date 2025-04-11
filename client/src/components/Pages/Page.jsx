@@ -3,6 +3,9 @@ import { Routes, Route } from "react-router-dom";
 
 import Header from "../common/Header";
 import PageWrapper from "../common/PageWrapper";
+import Login from "../authpage/Login";
+
+import Signup from "../authpage/Signup";
 
 // Eager-loaded components
 const Home = () => <div className="text-center mt-6 text-2xl">🏠 Home Page</div>;
@@ -29,6 +32,9 @@ function Page() {
             <Route path="/chat" element={<PageWrapper><Chat /></PageWrapper>} />
             <Route path="/movies" element={<PageWrapper><HorrorMovies /></PageWrapper>} />
             <Route path="/Store" element={<PageWrapper><Store /></PageWrapper>} />
+            <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
+            <Route path="/register" element={<PageWrapper><Signup /></PageWrapper>} />
+
           </Routes>
         </Suspense>
       </div>
