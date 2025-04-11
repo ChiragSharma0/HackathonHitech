@@ -1,9 +1,13 @@
-
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require('express');
 const http = require('http');
 const cors = require('cors');
 const { Server } = require('socket.io');
+const authRoutes = require('./routes/authRoutes');
+const connectDB = require('./config/db');
 
+connectDB();
 const app = express();
 app.use(cors());
 
@@ -26,6 +30,8 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(5000, () => {
-  console.log('Server running on http://localhost:5000');
+app.use("/api/auth", authRoutes);
+
+server.listen(process.env.PORT, () => {
+  console.log(`Server running on port ${process.env.PORT}`);
 });
