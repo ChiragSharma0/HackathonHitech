@@ -8,8 +8,11 @@ import SplineComp from './components/Spline/Spline'
 import Page from './components/Pages/Page';
 import { JumpscareProvider } from './context/Jumpcontext';
 import { SplineProvider } from './context/splinecontext';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './components/Pages/Login';
+import Chat from './components/Pages/Chat';
 
-function App() {
+const App = () => {
   return (
     <JumpscareProvider>
       <SplineProvider>
@@ -25,7 +28,9 @@ function App() {
         </div>
       </SplineProvider>
     </JumpscareProvider>
+
+    
   );
-}
+};
 
 export default App;
