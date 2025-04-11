@@ -1,4 +1,4 @@
-// App.jsx
+// GhostChat.jsx
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -6,7 +6,7 @@ const hauntedImages = [
   "https://tse2.mm.bing.net/th?id=OIP.XnYY0j-LL-OqtP8BSoyL_gHaE8&pid=Api&P=0&h=180",
 ];
 
-const App = () => {
+const GhostChat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
 
@@ -18,7 +18,7 @@ const App = () => {
     setInput('');
 
     try {
-      const res = await axios.post('http://localhost:3000/api/chat/send', {
+      const res = await axios.post('http://localhost:5500/api/chat/send', {
         message: `Respond as if you are a ghost named BhootNath to the following message but don't be dramatic and give a fearful vibe.\n${input}`,
       });
 
@@ -109,5 +109,5 @@ const App = () => {
   );
 };
 
-export default App;
+export default GhostChat;
  

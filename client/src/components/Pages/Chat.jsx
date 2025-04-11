@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
+import { useAuth } from '../../context/Authcontext';
 
-const socket = io('http://localhost:5000');
+const socket = io('http://localhost:5500');
 
 function Chat() {
-  const username = localStorage.getItem('username');
+  const { user  } = useAuth();
+
+  
+  const username = user?.username;
   const [message, setMessage] = useState('');
   const [chat, setChat] = useState([]);
   const [myId, setMyId] = useState('');
