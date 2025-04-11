@@ -61,7 +61,7 @@ const AuthForm = ({ isSignup }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <div className="AuthPage">
       {/* Background */}
       <motion.div
         className="absolute inset-0 bg-cover bg-center scale-110"
