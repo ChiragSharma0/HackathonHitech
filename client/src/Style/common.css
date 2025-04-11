@@ -1,0 +1,87 @@
+header {
+
+    position: relative;
+    top: 0px;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    padding: 5px 20px;
+
+}
+
+.header {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    pointer-events: all;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.Headerleft{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: auto;
+    display: flex;
+    pointer-events: all;
+    justify-content: space-between;
+    align-items: center;
+}
+.Headercenter{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: auto;
+    display: flex;
+    pointer-events: all;
+    justify-content: space-between;
+    align-items: center;
+}
+.Headerright{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: auto;
+    display: flex;
+    pointer-events: all;
+    justify-content: space-between;
+    align-items: center;
+}
+.headerimg {
+
+    position: relative;
+    
+    height: 100%;
+    display: flex;
+    /* keeps width = height */
+
+}
+.avatar{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: 80%;
+    width: auto;
+    display: flex;
+    pointer-events: all;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.Loginbuttn{
+    height: 80%;
+    width: 100px;
+    border-radius: 20px;
+    border: 2px solid rgb(30, 253, 30);
+    background-color: rgb(146, 233, 146);
+    font-size: 1.6vw;
+    font-weight: 700;
+}
